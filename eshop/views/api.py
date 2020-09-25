@@ -1,5 +1,5 @@
 import aiohttp
-from . import user
+from . import user, product
 from .product import *
 from . import order
 from . import dao
@@ -429,8 +429,8 @@ async def get_products(request):
             "500":
                 description: Internal Server Error
     """
-    obj = {'message': 'List of products'}
-    return aiohttp.web.json_response(obj)
+    result, status = await product.select_products(request)
+    return aiohttp.web.json_response(result, status=status)
 
 
 async def get_product(request):
@@ -458,8 +458,8 @@ async def get_product(request):
             "500":
                 description: Internal Server Error
     """
-    obj = {'message': 'product data'}
-    return aiohttp.web.json_response(obj)
+    result, status = await product.select_product_by_id(request)
+    return aiohttp.web.json_response(result, status=status)
 
 
 async def create_product(request):
@@ -503,8 +503,8 @@ async def create_product(request):
             "500":
                 description: Internal Server Error
     """
-    obj = {'message': 'Product successfully created'}
-    return aiohttp.web.json_response(obj)
+    result, status = await product.insert_product(request)
+    return aiohttp.web.json_response(result, status=status)
 
 
 async def update_product(request):
@@ -557,8 +557,8 @@ async def update_product(request):
             "500":
                 description: Internal Server Error
     """
-    obj = {'message': 'Product successfully updated'}
-    return aiohttp.web.json_response(obj)
+    result, status = await product.update_product(request)
+    return aiohttp.web.json_response(result, status=status)
 
 
 async def delete_product(request):
@@ -585,8 +585,8 @@ async def delete_product(request):
             "500":
                 description: Internal Server Error
     """
-    obj = {'message': 'Product successfully deleted'}
-    return aiohttp.web.json_response(obj)
+    result, status = await product.delete_product(request)
+    return aiohttp.web.json_response(result, status=status)
 
 
 async def add_product_to_order(request):

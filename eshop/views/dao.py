@@ -12,6 +12,21 @@ user = Table(
     Column('age', Integer)
 )
 
+order = Table(
+    'orders', meta,
+    Column('uuid', UUID, primary_key=True),
+    Column('number', Integer)
+)
+
+product = Table(
+    'products', meta,
+    Column('uuid', UUID, primary_key=True),
+    Column('name', VARCHAR(100)),
+    Column('description', VARCHAR(300)),
+    Column('price', VARCHAR(50)),
+    Column('left_in_stock', Integer)
+)
+
 user2order = Table(
     'users2orders', meta,
     Column('uuid', UUID, primary_key=True),
@@ -31,12 +46,6 @@ order2product = Table(
     Column('uuid', UUID, primary_key=True),
     Column('order_id', UUID),
     Column('product_id', UUID)
-)
-
-order = Table(
-    'orders', meta,
-    Column('uuid', UUID, primary_key=True),
-    Column('number', Integer)
 )
 
 
