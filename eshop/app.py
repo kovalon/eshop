@@ -14,7 +14,7 @@ async def create_app():
 
 
 async def on_start(app):
-    app['db'] = await asyncpgsa.create_pool(dsn='postgresql://postgres:postgres@localhost:5432/recurse')
+    app['db'] = await asyncpgsa.create_pool(dsn='postgresql://postgres:postgres@localhost:5432/eshop')
 
 
 async def on_shutdown(app):
